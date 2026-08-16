@@ -1,0 +1,127 @@
+@using Tourism_App.Controllers
+@model AdminViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">Admin Dashboard</h1>
+
+            <!-- Statistics Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Destinations</h5>
+                            <h2>@Model.TotalDestinations</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Bookings</h5>
+                            <h2>@Model.TotalBookings</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Revenue</h5>
+                            <h2>$@Model.TotalRevenue.ToString("N0")</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Avg. Booking Value</h5>
+                            <h2>$@(Model.TotalBookings > 0 ? (Model.TotalRevenue / Model.TotalBookings).ToString("N0") : "0")</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Bookings -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Recent Bookings</h5>
+                        </div>
+                        <div class="card-body">
+                            @if (Model.Bookings.Any())
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Destination</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var booking in Model.Bookings.OrderByDescending(b => b.BookingDate).Take(5))
+                                            {
+                                                <tr>
+                                                    <td>@booking.User?.FullName</td>
+                                                    <td>@booking.User?.Email</td>
+                                                    <td>N/A</td>
+                                                    <td>@(Model.Destinations.FirstOrDefault(d => d.Id == booking.DestinationId)?.Name ?? "Unknown")</td>
+                                                    <td>@booking.BookingDate.ToString("MMM dd, yyyy")</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <p class="text-muted">No bookings yet.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destinations Overview -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>All Destinations</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Location</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var destination in Model.Destinations)
+                                        {
+                                            <tr>
+                                                <td>@destination.Name</td>
+                                                <td>@destination.Location</td>
+                                                <td>$@destination.Price</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
