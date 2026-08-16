@@ -1,0 +1,172 @@
+@{
+    ViewData["Title"] = "Home - Tourism App";
+}
+
+<div class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Discover Your Dream Destination</h1>
+                <p class="lead mb-4">
+                    Explore amazing destinations around the world. Research, book, and get ready for unforgettable adventures with our easy-to-use tourism platform.
+                </p>
+                <div class="d-flex gap-3">
+                    @if (Context.Session.GetString("UserId") != null)
+                    {
+                        <a href="@Url.Action("Index", "Destinations")" class="btn btn-light btn-lg">Explore Destinations</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Register", "Account")" class="btn btn-light btn-lg">Get Started</a>
+                        <a href="@Url.Action("Login", "Account")" class="btn btn-outline-light btn-lg">Login</a>
+                    }
+                    <a href="#features" class="btn btn-outline-light btn-lg">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=600&fit=crop" alt="Travel Hero" class="img-fluid rounded shadow" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col">
+                <h2 class="display-5 fw-bold">Why Choose Our Tourism App?</h2>
+                <p class="lead text-muted">Experience seamless travel planning with our comprehensive features</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-search fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Research Destinations</h5>
+                        <p class="card-text text-muted">
+                            Browse detailed information about various destinations including descriptions, locations, and pricing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-calendar-check fa-3x text-success"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Easy Booking</h5>
+                        <p class="card-text text-muted">
+                            Register for your dream trip with our simple booking form. No complex processes, just fill in your details.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-phone fa-3x text-info"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Personalized Support</h5>
+                        <p class="card-text text-muted">
+                            After booking, our team will personally call you to provide further information and assistance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="display-5 fw-bold mb-4">Ready to Start Your Journey?</h2>
+                <p class="lead mb-4">
+                    Join thousands of travelers who have discovered their perfect destination through our platform.
+                </p>
+                <a href="@Url.Action("Index", "Destinations")" class="btn btn-primary btn-lg">
+                    <i class="fas fa-plane me-2"></i>Start Exploring
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?w=400&h=300&fit=crop" class="card-img-top" alt="Paris" style="height: 150px; object-fit: cover;">
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Paris, France</h6>
+                                <small class="text-muted">City of Light</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=300&fit=crop" class="card-img-top" alt="Tokyo" style="height: 150px; object-fit: cover;">
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Tokyo, Japan</h6>
+                                <small class="text-muted">Modern Metropolis</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=400&h=300&fit=crop" class="card-img-top" alt="Bali" style="height: 150px; object-fit: cover;">
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Bali, Indonesia</h6>
+                                <small class="text-muted">Tropical Paradise</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=400&h=300&fit=crop" class="card-img-top" alt="Rome" style="height: 150px; object-fit: cover;">
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Rome, Italy</h6>
+                                <small class="text-muted">Eternal City</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col">
+                <h2 class="display-5 fw-bold mb-4">How It Works</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="step-number mb-3">
+                            <span class="badge bg-primary rounded-pill fs-4 p-3">1</span>
+                        </div>
+                        <h5 class="fw-bold">Research</h5>
+                        <p class="text-muted">Browse our collection of amazing destinations and find the perfect one for you.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step-number mb-3">
+                            <span class="badge bg-primary rounded-pill fs-4 p-3">2</span>
+                        </div>
+                        <h5 class="fw-bold">Book</h5>
+                        <p class="text-muted">Fill out our simple registration form to book your trip.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step-number mb-3">
+                            <span class="badge bg-primary rounded-pill fs-4 p-3">3</span>
+                        </div>
+                        <h5 class="fw-bold">Get Support</h5>
+                        <p class="text-muted">Our team will call you personally to provide detailed information and assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
